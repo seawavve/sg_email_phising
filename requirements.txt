@@ -2,3 +2,5 @@ imblearn
 transformers
 tokenizers
 huggingface-hub
+gradio
+seaborn

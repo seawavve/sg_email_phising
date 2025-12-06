@@ -3,17 +3,19 @@ pip3 install -r ../requirements.txt
 # echo "logistic . . ."
 # python3 ../src/model_logistic.py > ../log/model_logistic.log
 
+## 1 -------
 # body가 NL 형태라 임베딩하여 분류할 수 있는 BERT 모델을 가장 먼저 활용하게 됨.
 # 자원, 시간 리소스를 고려했을때 학습이 된 open 모델을 활용하는 게 최적이라 판단함
-echo "logistic bert . . ."
-python3 ../src/model_bert.py > ../log/model_bert.log
+# echo "bert . . ."
+# python3 ../src/model_bert.py > ../log/model_bert.log
 # 장점은 0.87로 꽤 괜찮은 정확도를 얻음
 # 성능 수치를 개선하고자 LLM 활용을 고려함
 
+## 2 -------
 # sLLM을 활용해 성능을 개선하려함
 # 작은 사이즈의 open gemini 모델을 활용하여 분류 시도
-echo "logistic gemini . . ."
-python3 ../src/model_gemini.py > ../log/model_gemini.log
+# echo "gemini . . ."
+# python3 ../src/model_gemini.py > ../log/model_gemini.log
 # 성능이 오히려 떨어짐. 정성평가를 통해 모델 판단에 설명이 부족하고 프롬프트를 명확히 하는바가 필요하다 판단함.
 # 성능을 개선하고자 CoT + Few-shot 기법 활용 및 프롬프트 개선, subject도 input으로 활용
 
@@ -22,10 +24,11 @@ python3 ../src/model_gemini.py > ../log/model_gemini.log
 # python3 ../src/model_gemini_subject.py > ../log/model_gemini_subject.log
 
 # 몇 가지 개선하여 다시 sLLM 활용
-echo "subject gemini subject check. . ."
-python3 ../src/model_gemini_subject_check.py > ../log/model_gemini_subject_check.log
+# echo "subject gemini subject check. . ."
+# python3 ../src/model_gemini_subject_check.py > ../log/model_gemini_subject_check.log
 # 성능은 개선 되었으나 inference 시간이 너무나 오래 걸림
 
+## 3 -------
 # infer 시간을 개선하기 위해 아예 EDA한 바를 토대로 Logistic Regression 모델을 활용하고자함
 echo "logistic eda . . ."
 python3 ../src/model_logistic_eda.py > ../log/model_logistic_eda.log

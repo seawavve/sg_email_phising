@@ -1,18 +1,37 @@
 # demo_logistic_eda.py
 import re
+import os
 import numpy as np
 import pandas as pd
 from joblib import load
 import gradio as gr
 
 # === 1. 저장된 모델 & 벡터라이저 로드 ===
-model_path = "../models/logistic_eda_model.joblib"
-vectorizer_path = "../models/tfidf_vectorizer.joblib"
+# 스크립트 파일의 디렉토리를 기준으로 절대 경로 설정
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+
+model_path = os.path.join(project_root, "models", "logistic_eda_model.joblib")
+vectorizer_path = os.path.join(project_root, "models", "tfidf_vectorizer.joblib")
+
+# 파일 존재 여부 확인
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"모델 파일을 찾을 수 없습니다: {model_path}")
+if not os.path.exists(vectorizer_path):
+    raise FileNotFoundError(f"벡터라이저 파일을 찾을 수 없습니다: {vectorizer_path}")
+
+print(f"모델 경로: {model_path}")
+print(f"벡터라이저 경로: {vectorizer_path}")
 
 model_eda = load(model_path)
 tfidf_vectorizer = load(vectorizer_path)
 
+# 벡터라이저가 제대로 로드되었는지 확인
+if not hasattr(tfidf_vectorizer, 'idf_'):
+    raise ValueError("벡터라이저가 fit되지 않은 상태입니다. 모델을 다시 학습시켜주세요.")
+
 print("모델이 기대하는 feature 수:", model_eda.n_features_in_)
+print("벡터라이저가 성공적으로 로드되었습니다.")
 
 
 # === 2. 학습 시 urls 컬럼을 근사하는 함수 ===
@@ -199,4 +218,4 @@ with gr.Blocks() as demo:
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=True)

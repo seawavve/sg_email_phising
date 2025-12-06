@@ -1,5 +1,71 @@
+전체 데이터셋 크기: 39154개
+TF-IDF 변환 완료: 39154개 샘플 × 5000개 feature
+[TF-IDF만] Feature shape: (39154, 5000)
+  → 컬럼 목록 (처음 10개): ['00', '000', '0000', '000000', '00000000', '000000000', '0001', '005', '00pm', '01']
+  → 전체 컬럼 개수: 5000개
+  → 'urls' 컬럼 존재 여부: True
+  → 'label' 컬럼 존재 여부: True
+  ⚠️  주의: TF-IDF 컬럼 중에 'url'이 포함된 컬럼 발견: ['curl', 'tinyurl', 'url', 'urls']
+  ⚠️  주의: TF-IDF 컬럼 중에 'label'이 포함된 컬럼 발견: ['label', 'labels']
 
-Model Train execution time: 23.64 seconds
-> /Users/hanhee/Desktop/code/email_phising/src/model_logistic_eda.py(67)<module>()
--> y_pred = model_eda.predict(X_test)
-(Pdb) 
+[원본 df의 urls 확인]
+  → 원본 df의 urls 샘플 (처음 5개): [1, 1, 1, 1, 1]
+  → 원본 df의 urls 통계: min=0, max=1, 평균=0.67
+
+[urls 추가 후] Feature shape: (39154, 5000)
+  → 컬럼 개수 변화: 5000개 (예상: 5001개)
+  → 'urls' 컬럼 존재 여부: True
+  → urls 컬럼 샘플 (처음 5개):
+     [1, 1, 1, 1, 1]
+  → urls 컬럼 통계: min=0, max=1, 평균=0.67
+  → 원본과 동일한지: True
+
+[원본 df의 label 확인]
+  → 원본 df의 label 샘플 (처음 5개): [1, 1, 1, 0, 1]
+  → 원본 df의 label 통계: min=0, max=1, 평균=0.56
+
+[label 추가 후] Feature shape: (39154, 5000)
+  → 컬럼 개수 변화: 5000개 (예상: 5002개)
+  → 'urls' 컬럼 존재 여부: True
+  → 'label' 컬럼 존재 여부: True
+  → urls, label 컬럼 샘플 (처음 5개):
+     urls: [1, 1, 1, 1, 1]
+     label: [1, 1, 1, 0, 1]
+  → 전체 컬럼 수: 5000개 (TF-IDF 4998개 + urls 1개 + label 1개)
+  → 원본과 비교:
+     urls 동일 여부: True
+     label 동일 여부: True
+X shape: (39154, 4999)
+y shape: (39154,)
+SMOTE 적용 전: 39154개 샘플
+SMOTE 적용 후: 43684개 샘플
+클래스별 분포: 정상=21842개, 피싱=21842개
+
+데이터 분할 완료:
+  Train set: 39315개 샘플
+  Test set: 4369개 샘플
+  Train/Test 비율: 9.00:1
+
+모델 학습 시작...
+모델 학습 완료! 소요 시간: 171.24초
+
+============================================================
+모델 평가 결과
+============================================================
+정확도 (Accuracy): 0.9739
+
+혼동 행렬 (Confusion Matrix):
+[[2154   69]
+ [  45 2101]]
+
+분류 리포트 (Classification Report):
+{'0': {'precision': 0.9795361527967258, 'recall': 0.9689608636977058, 'f1-score': 0.9742198100407056, 'support': 2223}, '1': {'precision': 0.9682027649769586, 'recall': 0.9790307548928239, 'f1-score': 0.9735866543095458, 'support': 2146}, 'accuracy': 0.9739070725566491, 'macro avg': {'precision': 0.9738694588868422, 'recall': 0.9739958092952649, 'f1-score': 0.9739032321751258, 'support': 4369}, 'weighted avg': {'precision': 0.973969329665295, 'recall': 0.9739070725566491, 'f1-score': 0.9739088115973391, 'support': 4369}}
+Confusion matrix saved to ../fig/conf_matrix_logistic_eda.png
+
+혼동 행렬 이미지 저장: ../fig/conf_matrix_logistic_eda.png
+
+============================================================
+모델 및 벡터라이저 저장 완료:
+  모델: ../models/logistic_eda_model.joblib
+  벡터라이저: ../models/tfidf_vectorizer.joblib
+============================================================
