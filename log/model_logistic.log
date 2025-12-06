@@ -1,0 +1,9 @@
+
+Model Train execution time: 10.06 seconds
+Accuracy: 0.9823777295364576
+Confusion Matrix:
+[[3426   64]
+ [  74 4267]]
+Classification Report:
+{'0': {'precision': 0.9788571428571429, 'recall': 0.9816618911174785, 'f1-score': 0.9802575107296138, 'support': 3490.0}, '1': {'precision': 0.9852228122835373, 'recall': 0.9829532365814329, 'f1-score': 0.9840867158671587, 'support': 4341.0}, 'accuracy': 0.9823777295364576, 'macro avg': {'precision': 0.9820399775703401, 'recall': 0.9823075638494556, 'f1-score': 0.9821721132983863, 'support': 7831.0}, 'weighted avg': {'precision': 0.9823858583443065, 'recall': 0.9823777295364576, 'f1-score': 0.9823801744382185, 'support': 7831.0}}
+Confusion matrix saved to ../fig/conf_matrix_logistic.png

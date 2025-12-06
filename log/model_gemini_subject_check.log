@@ -1,0 +1,18 @@
+
+Accuracy: 0.5800
+Confusion Matrix:
+[[11 31]
+ [11 47]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.50      0.26      0.34        42
+           1       0.60      0.81      0.69        58
+
+    accuracy                           0.58       100
+   macro avg       0.55      0.54      0.52       100
+weighted avg       0.56      0.58      0.55       100
+
+✅ JSONL 저장 완료: results_gemini_inference_subject_check.jsonl
+Confusion matrix saved to ../fig/conf_matrix_gemini_subject_check.png

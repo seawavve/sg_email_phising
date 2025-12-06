@@ -1,0 +1,17 @@
+
+Accuracy: 0.8700
+Confusion Matrix:
+[[403  33]
+ [ 97 467]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.81      0.92      0.86       436
+           1       0.93      0.83      0.88       564
+
+    accuracy                           0.87      1000
+   macro avg       0.87      0.88      0.87      1000
+weighted avg       0.88      0.87      0.87      1000
+
+Confusion matrix saved to ../fig/conf_matrix_bert.png

@@ -1,0 +1,5 @@
+
+Model Train execution time: 23.64 seconds
+> /Users/hanhee/Desktop/code/email_phising/src/model_logistic_eda.py(67)<module>()
+-> y_pred = model_eda.predict(X_test)
+(Pdb) 
